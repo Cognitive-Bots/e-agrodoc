@@ -1,40 +1,54 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-
-const HomeScreen = () => {
+import { ScrollView } from "react-native-gesture-handler";
+// import { NavigationContainer } from 'react-navigation';
+// import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator} from 'react-navigation-stack';
+import HomeStack from "../routes/homeStack";
+const HomeScreen = ({navigatation}) => {
+  var navDiseaseDetection = (navigatation) => {
+    navigation.navigate('DiseaseDetection');
+  }
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}
-        onPress={() => { alert("Crop") }}>
-        <Image source={{ uri: "" }}
-          style={{
-            height: 300,
-            width: 350,
-            borderColor: "gray",
-            // borderWidth: 250
-          }} />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}
-        onPress={() => { alert("Fertilizer") }}>
-        <Image source={{ uri: "" }}
-          style={{
-            height: 300,
-            width: 350,
-            borderColor: "gray",
-            // borderWidth: 250
-          }} />
-      </TouchableOpacity>
+      {/* <HomeStack /> */}
+      <ScrollView>
+        <TouchableOpacity style={styles.button}
+          // onPress={() => { alert("Crop") }}>
+          // onPress={(navigation) => { navigation.navigate('diseaseDetection') }}>
+          onPress={() => navDiseaseDetection()}>
+          <Image source={{ uri: "" }}
+            style={{
+              height: 300,
+              width: 350,
+              borderColor: "gray",
+              // borderWidth: 250
+            }} />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+          // onPress={() => { alert("Fertilizer") }}>
+          onPress={(navigation) => { navigation.navigate('cropRecommendation') }}>
+          <Image source={{ uri: "" }}
+            style={{
+              height: 300,
+              width: 350,
+              borderColor: "gray",
+              // borderWidth: 250
+            }} />
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}
-        onPress={() => { alert("Disease") }}>
-        <Image source={{ uri: "" }}
-          style={{
-            height: 300,
-            width: 350,
-            borderColor: "gray",
-            // borderWidth: 250
-          }} />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+          // onPress={() => { alert("Disease") }}>
+          onPress={(navigatation) => { navigation.navigate('fertilizerRecommendation') }}>
+          <Image source={{ uri: "" }}
+            style={{
+              height: 300,
+              width: 350,
+              borderColor: "gray",
+              // borderWidth: 250
+            }} />
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   )
 }
