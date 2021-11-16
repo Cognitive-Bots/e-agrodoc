@@ -1,45 +1,42 @@
-import React from 'react';
+import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.button} 
-        onPress={()=>{alert("Crop")}}>
-          <Image source={{ uri: ""}}
+const HomeScreen = () => {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.button}
+        onPress={() => { alert("Crop") }}>
+        <Image source={{ uri: "" }}
           style={{
-                    height: 300,
-                    width: 350,
-                    borderColor: "gray",
-                    // borderWidth: 250
-                }}/>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} 
-        onPress={()=>{alert("Fertilizer")}}>
-          <Image source={{ uri: ""}}
+            height: 300,
+            width: 350,
+            borderColor: "gray",
+            // borderWidth: 250
+          }} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}
+        onPress={() => { alert("Fertilizer") }}>
+        <Image source={{ uri: "" }}
           style={{
-                    height: 300,
-                    width: 350,
-                    borderColor: "gray",
-                    // borderWidth: 250
-                }}/>
-        </TouchableOpacity>
+            height: 300,
+            width: 350,
+            borderColor: "gray",
+            // borderWidth: 250
+          }} />
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} 
-        onPress={()=>{alert("Disease")}}>
-          <Image source={{ uri: ""}}
+      <TouchableOpacity style={styles.button}
+        onPress={() => { alert("Disease") }}>
+        <Image source={{ uri: "" }}
           style={{
-                    height: 300,
-                    width: 350,
-                    borderColor: "gray",
-                    // borderWidth: 250
-                }}/>
-        </TouchableOpacity>
-        
-      </View>
-    );
-  }
+            height: 300,
+            width: 350,
+            borderColor: "gray",
+            // borderWidth: 250
+          }} />
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -60,3 +57,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
   },
 });
+
+export default HomeScreen;

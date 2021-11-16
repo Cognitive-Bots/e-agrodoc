@@ -1,15 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-import homescreen from ".screens/homescreen";
+import HomeScreen from './screens/homescreen';
+import 'react-native-gesture-handler';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>E-AgroDoc Coming soon!!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <HomeScreen />
   );
 }
 
