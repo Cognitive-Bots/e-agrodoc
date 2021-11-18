@@ -1,23 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
-// import { NavigationContainer } from 'react-navigation';
-// import { createStackNavigator } from '@react-navigation/stack';
-import { createStackNavigator} from 'react-navigation-stack';
-import HomeStack from "../routes/homeStack";
-const HomeScreen = ({navigatation}) => {
-  var navDiseaseDetection = (navigatation) => {
-    navigation.navigate('DiseaseDetection');
-  }
+
+
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      {/* <HomeStack /> */}
       <ScrollView>
+        
         <TouchableOpacity style={styles.button}
-          // onPress={() => { alert("Crop") }}>
-          // onPress={(navigation) => { navigation.navigate('diseaseDetection') }}>
-          onPress={() => navDiseaseDetection()}>
-          <Image source={{ uri: "" }}
+          onPress = {() => {navigation.navigate("diseaseDetection")}}>
+          <Image source={{ uri: "https://github.com/Cognitive-Bots/e-agrodoc/blob/dev/assets/cd.jpg" }}
             style={{
               height: 300,
               width: 350,
@@ -25,9 +18,9 @@ const HomeScreen = ({navigatation}) => {
               // borderWidth: 250
             }} />
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.button}
-          // onPress={() => { alert("Fertilizer") }}>
-          onPress={(navigation) => { navigation.navigate('cropRecommendation') }}>
+          onPress={() => { navigation.navigate('cropRecommendation') }}>
           <Image source={{ uri: "" }}
             style={{
               height: 300,
@@ -39,7 +32,7 @@ const HomeScreen = ({navigatation}) => {
 
         <TouchableOpacity style={styles.button}
           // onPress={() => { alert("Disease") }}>
-          onPress={(navigatation) => { navigation.navigate('fertilizerRecommendation') }}>
+          onPress={() => { navigation.navigate('fertilizerRecommendation') }}>
           <Image source={{ uri: "" }}
             style={{
               height: 300,
@@ -63,10 +56,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#859a9b',
     borderRadius: 10,
-    // padding: 10,
     marginBottom: 20,
-    // shadowColor: '#303838',
-    // shadowOffset: { width: 10, height: 10},
     shadowRadius: 10,
     shadowOpacity: 0.35,
   },

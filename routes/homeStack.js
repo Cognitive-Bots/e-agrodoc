@@ -1,46 +1,23 @@
 import * as React from 'react';
-import { Button, View } from 'react-native';
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from '../screens/homeScreen';
+import DiseaseDetection from '../screens/diseaseDetection';
+import CropRecommendation from '../screens/cropRecommendation';
+import FertilizerRecommendation from '../screens/fertilizerRecommendation';
 
-import { createStackNavigator} from 'react-navigation-stack';
-const Stack = createStackNavigator();
-// Create a stack navigator for 3 screens
-// function HomeStack() {
-//     return (
-//         <Stack.Navigator>
-//             <Stack.Screen name="Home" component={HomeScreen} />
-//             <Stack.Screen name="diseaseDetection" component={DiseaseDetection} />
-//             <Stack.Screen name="cropRecommendation" component={CropRecommendation} />
-//             <Stack.Screen name="fertilizerRecommendation" component={FertilizerRecommendation} />
-//         </Stack.Navigator>
-//     );
-// }
-
-const screens = {
-    Home: {
-        screen: HomeScreen,
-        navigationOptions: {
-            title: 'Home',
-        },
-    }, 
-    diseaseDetection: {
-        screen: DiseaseDetection,
-        navigationOptions: {
-            title: 'Disease Detection',
-        },
-    },
-    cropRecommendation: {
-        screen: CropRecommendation,
-        navigationOptions: {
-            title: 'Crop Recommendation',
-        },
-    },
-    fertilizerRecommendation: {
-        screen: FertilizerRecommendation,
-        navigationOptions: {
-            title: 'Fertilizer Recommendation',
-        },
-    },
-};
-
-const HomeStack = createStackNavigator(screens);
+const HomeStack = () => {
+    const Stack = createStackNavigator();
+    return(
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="diseaseDetection" component={DiseaseDetection} />
+                <Stack.Screen name="cropRecommendation" component={CropRecommendation} />
+                <Stack.Screen name="fertilizerRecommendation" component={FertilizerRecommendation} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+}
 export default HomeStack;

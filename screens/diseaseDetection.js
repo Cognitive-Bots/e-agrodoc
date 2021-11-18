@@ -54,3 +54,5 @@ const diseaseDetection = ({ route }) => {
     </View>
   );
 }
+
+export default diseaseDetection;
