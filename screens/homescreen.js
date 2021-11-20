@@ -11,7 +11,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.button}
           onPress={() => {
             console.log(navigation);
-            navigation.navigate('HomeStack', {
+            navigation.navigate('Home', {
               screen: "diseaseDetection",
               inital: false
             })
@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
 
         <TouchableOpacity style={styles.button}
           onPress={() => {
-            navigation.navigate('HomeStack', {
+            navigation.navigate('Home', {
               screen: 'cropRecommendation',
               inital: false
             })
@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.button}
           // onPress={() => { alert("Disease") }}>
           onPress={() => {
-            navigation.navigate('HomeStack', {
+            navigation.navigate('Home', {
               screen: 'fertilizerRecommendation',
               inital: false
             })
