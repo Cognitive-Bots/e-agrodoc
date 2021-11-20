@@ -1,15 +1,21 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
+import HomeStack from "../routes/homeStack";
 
-
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        
+
         <TouchableOpacity style={styles.button}
-          onPress = {() => {navigation.navigate("diseaseDetection")}}>
+          onPress={() => {
+            console.log(navigation);
+            navigation.navigate('HomeStack', {
+              screen: "diseaseDetection",
+              inital: false
+            })
+          }}>
           <Image source={{ uri: "https://github.com/Cognitive-Bots/e-agrodoc/blob/dev/assets/cd.jpg" }}
             style={{
               height: 300,
@@ -20,7 +26,12 @@ const HomeScreen = ({navigation}) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button}
-          onPress={() => { navigation.navigate('cropRecommendation') }}>
+          onPress={() => {
+            navigation.navigate('HomeStack', {
+              screen: 'cropRecommendation',
+              inital: false
+            })
+          }}>
           <Image source={{ uri: "" }}
             style={{
               height: 300,
@@ -32,7 +43,12 @@ const HomeScreen = ({navigation}) => {
 
         <TouchableOpacity style={styles.button}
           // onPress={() => { alert("Disease") }}>
-          onPress={() => { navigation.navigate('fertilizerRecommendation') }}>
+          onPress={() => {
+            navigation.navigate('HomeStack', {
+              screen: 'fertilizerRecommendation',
+              inital: false
+            })
+          }}>
           <Image source={{ uri: "" }}
             style={{
               height: 300,
