@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import HomeStack from './routes/homeStack';
-import Navigator from './routes/drawer';
+import NavContainer from './routes/drawer';
 export default function App() {
   return (
     // <HomeStack />
-    <Navigator />
+    // <Navigator />
+    <NavContainer />
   );
 }
 
