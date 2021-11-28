@@ -22,7 +22,15 @@ const diseaseDetection = ({ route }) => {
   }, []);
 
   const classifyImage = async () => {
-    const model = await tf.loadLayersModel('assets\model.json');
+    const tfReady = await tf.ready();
+    console.log("-----------------------------------------------");
+    const modelJson = await require("C:\\Users\\sujit\\Documents\\CognitiveBots\\e-agrodoc\\assets\\model.json");
+    console.log("1----------------------------------------------");
+    const modelWeight = await require("C:\\Users\\sujit\\Documents\\CognitiveBots\\e-agrodoc\\assets\\group1-shard.bin");
+    console.log("2----------------------------------------------");
+    const model = await tf.loadLayersModel(bundleResourceIO(modelJson,modelWeight));
+    console.log("3-----------------------------------------------");
+    console.log(image.uri);
     const imageAssetPath = image.uri;
     const response = await fetch(imageAssetPath);
     const jpegBytes = await response.arrayBuffer();
@@ -31,7 +39,7 @@ const diseaseDetection = ({ route }) => {
     const imgTensor = tf.tensor3d(data, [height, width, 3]);
     const input = imgTensor.toFloat().div(tf.scalar(255));
     const predictions = await model.predict(input).data();
-    console.log(predictions);
+    console.log(predictions.indexOf(Math.max(...predictions)));
   };
 
 
