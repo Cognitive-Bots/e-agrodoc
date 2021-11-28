@@ -1,4 +1,5 @@
 import * as React from 'react';
+import 'cities.js';
 import {Text, StyleSheet, View, TextInput, Button} from 'react-native';
 // import Constants from 'expo-constants';
 
@@ -33,6 +34,9 @@ export default function CropRecommendation() {
         <TextInput 
           placeholder="Enter the value"  onChange={(e)=>setCount(e[4].target.value)}/>
         <Text>State</Text>
+        <select onchange="print_city('state', this.selectedIndex);" id="sts" name ="stt" class="form-control" required></select>
+        <select id ="state" class="form-control" required></select>
+        <script language="javascript">print_state("sts");</script>
         <button value="Predict">Predict</button>
       </View>
     </View>
