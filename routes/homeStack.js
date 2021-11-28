@@ -10,7 +10,10 @@ import FertilizerRecommendation from '../screens/fertilizerRecommendation';
 const HomeStack = () => {
     const Stack = createStackNavigator();
     return(
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName="Home" 
+            // 1 option having no title
+            headerMode="none"
+            >
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="diseaseDetection" component={DiseaseDetection} />
                 <Stack.Screen name="cropRecommendation" component={CropRecommendation} />

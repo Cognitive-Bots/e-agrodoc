@@ -10,9 +10,14 @@ const Drawer = createDrawerNavigator();
 
 const NavContainer = () => {
     return (
+
         <NavigationContainer>
             <Drawer.Navigator >
-                <Drawer.Screen name="HomeStack" component={HomeStack} />
+                <Drawer.Screen name="HomeStack" component={HomeStack}
+                    options={{
+                        title: 'Home'
+                    }}
+                />
                 <Drawer.Screen name="About" component={AboutScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
