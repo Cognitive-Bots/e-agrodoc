@@ -8,6 +8,8 @@ import * as jpeg from 'jpeg-js';
 
 const diseaseDetection = ({ route }) => {
   const [image, setImage] = useState(null);
+  const [predictions, setPredictions] = useState(null);
+  const [imageUri, setImageUri] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -30,9 +32,11 @@ const diseaseDetection = ({ route }) => {
     console.log("2----------------------------------------------");
     const model = await tf.loadLayersModel(bundleResourceIO(modelJson,modelWeight));
     console.log("3-----------------------------------------------");
-    console.log(image.uri);
+    console.log(image);
     const imageAssetPath = image.uri;
     const response = await fetch(imageAssetPath);
+    console.log("4-----------------------------------------------");
+    console.log(response);
     const jpegBytes = await response.arrayBuffer();
     const rawImageData = new Uint8Array(jpegBytes);
     const { width, height, data } = jpeg.decode(rawImageData);
