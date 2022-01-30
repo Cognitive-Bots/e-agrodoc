@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Image, View, Platform, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as tf from '@tensorflow/tfjs';
+// import { fetch, bundleResourceIO } from '@tensorflow/tfjs-react-na```````tive';
 
 const DiseaseDetection = ({ route }) => {
   const [image, setImage] = useState(null);
@@ -16,6 +18,37 @@ const DiseaseDetection = ({ route }) => {
       }
     })();
   }, []);
+
+const classifyImage = async () => {
+  if (!image) {
+    alert('Please select an image first');
+    return;
+  }
+  const body = JSON.stringify({
+    requests: [
+      {
+        image: {
+          content: image.base64,
+        },
+        features: [
+          {
+            type: 'LABEL_DETECTION',
+            maxResults: 10,
+          },
+        ],
+      },
+    ],
+  });
+  try {
+    const tfReady = await tf.ready();
+    const model = await tf.loadLayersModel('https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/classification/2');
+    const predictions = await model.classify(image);
+    console.log(predictions);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -50,6 +83,9 @@ const DiseaseDetection = ({ route }) => {
       )}
       <View style={{flex:1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
         <Button title="Upload" onPress={pickImage} color="coral" />
+      </View>
+      <View style={{flex:1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
+        <Button title="Predict" onPress={classifyImage} color="coral" />
       </View>
     </View>
   );
