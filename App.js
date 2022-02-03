@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import NavContainer from './routes/drawer';
+import LoginScreen from './screens/loginScreen';
+
 export default function App() {
   return (
-    <NavContainer />
+    // <NavContainer />
+    <LoginScreen />
   );
 }
 
