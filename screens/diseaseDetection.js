@@ -1,55 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Image, View, Platform, ScrollView } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import * as tf from '@tensorflow/tfjs';
-// import { fetch, bundleResourceIO } from '@tensorflow/tfjs-react-na```````tive';
+import React, { useState, useEffect } from "react";
+import { Button, Image, View, Platform, ScrollView } from "react-native";
+import * as ImagePicker from "expo-image-picker";
 
 const DiseaseDetection = ({ route }) => {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== 'web') {
+      if (Platform.OS !== "web") {
         const { status } =
           await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('camera roll permissions needed');
+        if (status !== "granted") {
+          alert("camera roll permissions needed");
         }
       }
     })();
   }, []);
 
-const classifyImage = async () => {
-  if (!image) {
-    alert('Please select an image first');
-    return;
-  }
-  const body = JSON.stringify({
-    requests: [
+  // code to post image to server at port 8000
+  const postImage = async () => {
+    console.log(image);
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "disease-detection");
+    data.append("cloud_name", "disease-detection");
+    const response = await fetch(
+      "http://192.168.29.54:8000/upload",
       {
-        image: {
-          content: image.base64,
-        },
-        features: [
-          {
-            type: 'LABEL_DETECTION',
-            maxResults: 10,
-          },
-        ],
-      },
-    ],
-  });
-  try {
-    const tfReady = await tf.ready();
-    const model = await tf.loadLayersModel('https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/classification/2');
-    const predictions = await model.classify(image);
-    console.log(predictions);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
+        method: "POST",
+        body: data
+      }
+    );
+    // const file = await response.json();
+    let responseJson = await response.status;
+    console.log(responseJson);
+    return responseJson;
+  };
+  
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -66,11 +53,23 @@ const classifyImage = async () => {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', backgroundColor: "black" }}>
+    <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
       {image && (
         <ScrollView>
-          <View style={{ flex:1, alignItems: 'center', marginTop:100, justifyContent: 'center' }}>
-            <ScrollView horizontal={true} alwaysBounceHorizontal={true} alwaysBounceVertical={true} vertical={true}>
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              marginTop: 100,
+              justifyContent: "center",
+            }}
+          >
+            <ScrollView
+              horizontal={true}
+              alwaysBounceHorizontal={true}
+              alwaysBounceVertical={true}
+              vertical={true}
+            >
               <Image
                 source={{
                   uri: image,
@@ -81,14 +80,28 @@ const classifyImage = async () => {
           </View>
         </ScrollView>
       )}
-      <View style={{flex:1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          margin: 10,
+          justifyContent: "center",
+        }}
+      >
         <Button title="Upload" onPress={pickImage} color="coral" />
       </View>
-      <View style={{flex:1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
-        <Button title="Predict" onPress={classifyImage} color="coral" />
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          margin: 10,
+          justifyContent: "center",
+        }}
+      >
+        <Button title="Predict" onPress={postImage} color="coral" />
       </View>
     </View>
   );
-}
+};
 
 export default DiseaseDetection;
