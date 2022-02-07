@@ -9,20 +9,29 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from "react-native";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import config from "../utils/config";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LoginScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation }) => {
     const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const [userAge, setUserAge] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [errortext, setErrortext] = useState("");
 
-    const handleLogin = async () => {
+    const handleSignup = async () => {
         setErrortext("");
+        if (!userEmail) {
+            alert("Please fill Email");
+            return;
+        }
         if (!userName) {
-            alert("Please fill username");
+            alert("Please fill Username");
+            return;
+        }
+        if (!userAge) {
+            alert("Please fill Age");
             return;
         }
         if (!userPassword) {
@@ -30,54 +39,37 @@ const LoginScreen = ({ navigation }) => {
             return;
         }
         setLoading(true);
-        // let formBody = [];
-        // for (let key in dataToSend) {
-        //     let encodedKey = encodeURIComponent(key);
-        //     let encodedValue = encodeURIComponent(dataToSend[key]);
-        //     formBody.push(encodedKey + "=" + encodedValue);
-        // }
-        // formBody = formBody.join("&");
-
-        // var xx = new FormData();
-        // xx.append("file", {
-        //     email: userEmail,
-        //     password: userPassword,
-        // });
-        // console.log(xx);
 
         try {
-            console.log(userName, userPassword);
-            let response = await fetch(config.ip + "login", {
+            let response = await fetch(config.ip + "register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     name: userName,
+                    email: userEmail,
+                    age: userAge,
                     password: userPassword,
                 }),
             });
             let responseJson = await response.status;
             console.log(responseJson);
             if (responseJson == 200) {
-                //Hide Loader
+                console.log("User is successfully created but navigation needs setting up")
                 setLoading(false);
-                console.log(responseJson);
                 if (responseJson) {
                     AsyncStorage.setItem("user_id", userName);
-                    navigation.navigate("");
+                    navigation.navigate("DocPick");
                 } else {
-                    console.log("Please check your username id or password");
+                    console.log("Please check your email id or password");
                 }
-            } else if (responseJson == 500) {
-                alert("Server Error!!");
-            } else if (responseJson == 404) {
-                alert("User not found !!");
-            } else if (responseJson == 401) {
-                alert("Password Invalid !!");
-            } else {
-                alert("Some other error !!");
             }
+            // else if (responseJson == 500) {
+            //     alert("Server Error!!");
+            // } else {
+            //     alert("Some other error !!");
+            // }
         } catch (error) {
             console.error(error);
         }
@@ -86,17 +78,35 @@ const LoginScreen = ({ navigation }) => {
     return (
         <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss();
-            console.log("Dismiss keyboard");
+            console.log("Keyboard dismissed");
         }} >
             <View style={styles.container}>
                 <StatusBar style="inverted" />
-                <Text style={styles.logo}>E-AgroDoc</Text>
+                <Text style={styles.logo}>E-Agrodoc</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Username"
                         placeholderTextColor="#ecf0f1"
                         onChangeText={(text) => setUserName(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Email"
+                        keyboardType="email-address"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setUserEmail(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Age"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setUserAge(text)}
                     />
                 </View>
                 <View style={styles.inputView}>
@@ -111,20 +121,11 @@ const LoginScreen = ({ navigation }) => {
                 {errortext != "" ? (
                     <Text style={styles.errorTextStyle}>{errortext}</Text>
                 ) : null}
-                {/* <TouchableOpacity>
-                <Text style={styles.forgot}>Forgot Password?</Text>
-            </TouchableOpacity> */}
-                <TouchableOpacity
-                    style={styles.loginBtn}
-                    onPress={() => handleLogin()}
-                >
-                    <Text style={styles.loginText}>LOGIN</Text>
-                </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.signupBtn}
-                    onPress={() => navigation.navigate("RegisterScreen")}
+                    onPress={() => handleSignup()}
                 >
-                    <Text style={styles.signuptext}>Signup</Text>
+                    <Text style={styles.loginText}>Signup</Text>
                 </TouchableOpacity>
             </View>
         </TouchableWithoutFeedback>
@@ -156,14 +157,14 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     inputText: {
-        height: 80,
+        height: 50,
         color: "white",
     },
     forgot: {
         color: "white",
         fontSize: 16,
     },
-    loginBtn: {
+    signupBtn: {
         width: "80%",
         backgroundColor: "#15f4ee",
         // #48dbfb
@@ -174,26 +175,9 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginBottom: 10,
     },
-    signupBtn: {
-        width: "80%",
-        backgroundColor: "#0e0e0e",
-        borderRadius: 25,
-        borderWidth: 1,
-        borderColor: "#15f4ee",
-        height: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 0,
-        marginBottom: 10,
-    },
     loginText: {
         color: "#000000",
         fontSize: 22,
-        fontWeight: "600",
-    },
-    signuptext: {
-        color: "#FFFFFF",
-        fontSize: 20,
     },
     errorTextStyle: {
         color: "red",
@@ -202,4 +186,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default RegisterScreen;

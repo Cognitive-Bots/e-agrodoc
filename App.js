@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import NavContainer from './routes/drawer';
-import LoginScreen from './screens/loginScreen';
+// import NavContainer from './routes/drawer';
+import MainStack from './routes/mainStack';
+// import LoginScreen from './screens/loginScreen';
 
 export default function App() {
   return (
     // <NavContainer />
-    <LoginScreen />
+    // <LoginScreen />
+      <MainStack />
   );
 }
 

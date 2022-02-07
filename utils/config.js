@@ -1,5 +1,5 @@
 const config={
-    "ip": ["localhost", "192.168.100.7"]
+    "ip": "http://192.168.100.7:1111/",
 }
 
 export default config;
