@@ -8,10 +8,9 @@ import HomeStack from './homeStack';
 
 const Drawer = createDrawerNavigator();
 
-const NavContainer = () => {
+const DrawerNavigator = () => {
     return (
 
-        <NavigationContainer>
             <Drawer.Navigator >
                 <Drawer.Screen name="HomeStack" component={HomeStack}
                     options={{
@@ -20,7 +19,6 @@ const NavContainer = () => {
                 />
                 <Drawer.Screen name="About" component={AboutScreen} />
             </Drawer.Navigator>
-        </NavigationContainer>
     )
 }
-export default NavContainer;
+export default DrawerNavigator;

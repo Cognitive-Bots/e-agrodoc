@@ -11,8 +11,7 @@ const HomeStack = () => {
     const Stack = createStackNavigator();
     return(
             <Stack.Navigator initialRouteName="Home" 
-            // 1 option having no title
-            headerMode="none"
+            screenOptions={{headerShown:false}}
             >
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="diseaseDetection" component={DiseaseDetection} />

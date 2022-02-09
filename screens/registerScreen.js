@@ -12,7 +12,7 @@ import {
 import config from "../utils/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const RegisterScreen = ({ navigation }) => {
+const RegisterScreen = ({ navigation, setSignedIn }) => {
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userAge, setUserAge] = useState("");
@@ -58,6 +58,7 @@ const RegisterScreen = ({ navigation }) => {
             if (responseJson == 200) {
                 console.log("User is successfully created but navigation needs setting up")
                 setLoading(false);
+                setSignedIn(true);
                 if (responseJson) {
                     AsyncStorage.setItem("user_id", userName);
                     navigation.navigate("DocPick");

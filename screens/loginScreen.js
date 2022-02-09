@@ -13,7 +13,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import config from "../utils/config";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ( {setSignedIn} ) => {
     const [userName, setUserName] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -63,9 +63,11 @@ const LoginScreen = ({ navigation }) => {
                 //Hide Loader
                 setLoading(false);
                 console.log(responseJson);
+                setSignedIn(true);
                 if (responseJson) {
                     AsyncStorage.setItem("user_id", userName);
-                    navigation.navigate("");
+                    // navigation.navigate("DrawerNavigator");
+                    
                 } else {
                     console.log("Please check your username id or password");
                 }

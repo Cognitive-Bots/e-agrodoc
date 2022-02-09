@@ -1,25 +1,32 @@
 import * as React from 'react';
+import { useState } from 'react';
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from '../screens/loginScreen';
 import RegisterScreen from '../screens/registerScreen';
 import { NavigationContainer } from '@react-navigation/native';
+import DrawerNavigator from '../routes/drawer';
+
 const MainStack = () => {
     const Stack = createStackNavigator();
+    const [signedIn, setSignedIn] = useState(false)
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="LoginScreen"
-                // 1 option having no title
-                // headerMode="none"
-            >
-                <Stack.Screen name="LoginScreen" component={LoginScreen} />
-                <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-                {/* <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="diseaseDetection" component={DiseaseDetection} />
-                <Stack.Screen name="cropRecommendation" component={CropRecommendation} />
-                <Stack.Screen name="fertilizerRecommendation" component={FertilizerRecommendation} /> */}
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+
+            {!signedIn ? (
+                <Stack.Navigator initialRouteName="LoginScreen"
+                    screenOptions={{ headerShown: false }}
+                >
+                    <Stack.Screen name="LoginScreen">
+                        {props => <LoginScreen {...props} setSignedIn={setSignedIn} />}
+                    </Stack.Screen>
+                    <Stack.Screen name="RegisterScreen">
+                        {props => <RegisterScreen {...props} setSignedIn={setSignedIn} />}
+                    </Stack.Screen>
+                </Stack.Navigator>
+            ) : <DrawerNavigator />
+            }
+        </NavigationContainer >
+    );
 }
 export default MainStack;
