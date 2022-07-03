@@ -1,4 +1,4 @@
-const ip = "192.168.29.12"
+const ip = "192.168.29.54"
 const auth_port = 1111
 const upload_port = 8010
 const flask1_port = 8012
