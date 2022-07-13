@@ -1,167 +1,175 @@
-import React, { useState, useEffect } from "react";
-import { Button, Image, View, Platform, ScrollView, Text } from "react-native";
-import * as ImagePicker from "expo-image-picker";
+import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from "react-native";
 import config from "../utils/config";
-import Constants from 'expo-constants';
-import * as Location from "expo-location";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Image_GPS = ({ route }) => {
-  const [image, setImage] = useState(null);
+const Satellite = () => {
+    const [nitrogen, setNitrogen] = useState("");
+    const [phosporous, setPhosporous] = useState("");
+    const [potassium, setPotassium] = useState("");
+    const [pH, setpH] = useState("");
+    const [temparature, setTemparature] = useState(false);
+    const [rainfall, setRainfall] = useState("");
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== "granted") {
-          alert("camera roll permissions needed");
+    const handleSignup = async () => {
+
+        try {
+            let response = await fetch(config.flask2_ip+"fertilizer_recommendation", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nitrogen:nitrogen,
+                    phosporous:phosporous,
+                    potassium:potassium,
+                    pH:pH,
+                    temparature:temparature,
+                    rainfall:rainfall
+                }),
+            });
+            let responseJson = await response.status;
+            console.log(responseJson);
+
+        } catch (error) {
+            console.error(error);
         }
-      }
-    })();
-  }, []);
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      // aspect: [4, 3],
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
-  };
-  const useLocation = () => {
-    const [location, setLocation] = useState();
-
-    const getLocation = async () => {
-      try {
-        const { granted } = await Location.requestPermissionsAsync();
-        if (!granted) return;
-        const {
-          coords: { latitude, longitude },
-        } = await Location.getCurrentPositionAsync();
-        setLocation({ latitude, longitude });
-      } catch (error) {
-        console.log(error);
-      }
     };
 
-    useEffect(() => {
-      getLocation();
-    }, []);
-
-    return location;
-  };
-
-  const uploadToServer = async () => {
-    console.log("in upload server");
-    console.log(image);
-
-    var res = image;
-    let localUri = res;
-    var fileType = localUri.split(".").pop();
-    console.log(fileType);
-    var typeFile;
-    if (fileType == "dcm") {
-      typeFile = "application/dicom";
-    } else if (fileType == "png") {
-      typeFile = "image/png";
-    } else if (fileType == "jpg") {
-      typeFile = "image/jpg";
-    } else {
-      typeFile = "image/jpeg";
-    }
-
-    var data = new FormData();
-    data.append("file", {
-      uri: localUri,
-      type: typeFile,
-    });
-    console.log(data);
-    try {
-      // http://183.82.46.37:1111/fileup --> udaan-super-micro
-      // http://192.168.231.64:1111/fileup --> My local PC
-      // Change below IP with Linux WIFI IPv4 when giving presentation
-      let response = await fetch(config.upload_ip + "upload", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-        body: data,
-      });
-      let responseJson = await response.status;
-      console.log("File upload status code: ", responseJson);
-      if (responseJson == 200) {
-        alert("File Uploaded !!");
-        setImage(null);
-      } else {
-        alert("Server Error or File not uploadable !!");
-        setImage(null);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <View style={{ flex: 1, alignItems: "center", backgroundColor: "black" }}>
-      {image && (
-        <ScrollView>
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              marginTop: 100,
-              justifyContent: "center",
-            }}
-          >
-            <ScrollView
-              horizontal={true}
-              alwaysBounceHorizontal={true}
-              alwaysBounceVertical={true}
-              vertical={true}
-            >
-              <Image
-                source={{
-                  uri: image,
-                }}
-                style={{ width: 400, height: 400 }}
-              />
-            </ScrollView>
-          </View>
-        </ScrollView>
-      )}
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          margin: 10,
-          justifyContent: "center",
-        }}
-      >
-        <Button title="Upload" onPress={pickImage} color="coral" />
-      </View>
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          margin: 10,
-          justifyContent: "center",
-        }}
-      >
-        <Button
-          title="Upload to Server"
-          onPress={uploadToServer}
-          color="coral"
-        />
-      </View>
-    </View>
-  );
+    return (
+        <TouchableWithoutFeedback onPress={() => {
+            Keyboard.dismiss();
+            console.log("Keyboard dismissed");
+        }} >
+            <View style={styles.container}>
+                <StatusBar style="inverted" />
+                <Text style={styles.logo}>Fertilizer-Recommendations</Text>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Nitrogen"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setNitrogen(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Phosporous"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setPhosporous(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Potassium"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setPotassium(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="pH"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setpH(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="temparature"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setTemparature(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Rainfall"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setRainfall(text)}
+                    />
+                </View>
+                <TouchableOpacity
+                    style={styles.signupBtn}
+                    onPress={() => handleSignup()}
+                >
+                    <Text style={styles.loginText}>Submit</Text>
+                </TouchableOpacity>
+            </View>
+        </TouchableWithoutFeedback>
+    );
 };
 
-export default Image_GPS;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#0e0e0e",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    logo: {
+        fontWeight: "600",
+        fontSize: 45,
+        color: "#15f4ee",
+        marginBottom: 40,
+    },
+    inputView: {
+        width: "80%",
+        backgroundColor: "#0e0e0e",
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: "#15f4ee",
+        height: 50,
+        marginBottom: 20,
+        justifyContent: "center",
+        padding: 20,
+    },
+    inputText: {
+        height: 50,
+        color: "white",
+    },
+    forgot: {
+        color: "white",
+        fontSize: 16,
+    },
+    signupBtn: {
+        width: "80%",
+        backgroundColor: "#15f4ee",
+        // #48dbfb
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        marginBottom: 10,
+    },
+    loginText: {
+        color: "#000000",
+        fontSize: 22,
+    },
+    // errorTextStyle: {
+    //     color: "red",
+    //     textAlign: "center",
+    //     fontSize: 14,
+    // },
+});
+
+export default Satellite;
