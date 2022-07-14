@@ -217,6 +217,10 @@ export default class App extends Component {
 
     console.log(response.headers);
     console.log(response.body);
+    Alert.alert(
+      "Result",
+      response.body,
+    );
   };
 
   render() {
