@@ -19,6 +19,7 @@ const Satellite = () => {
     const [pH, setpH] = useState("");
     const [temparature, setTemparature] = useState(false);
     const [rainfall, setRainfall] = useState("");
+    const [humidity, setHumidity] = useState("");
 
     const handleSignup = async () => {
 
@@ -34,7 +35,8 @@ const Satellite = () => {
                     potassium:potassium,
                     pH:pH,
                     temparature:temparature,
-                    rainfall:rainfall
+                    rainfall:rainfall,
+                    humidity:humidity
                 }),
             });
             let responseJson = await response.status;
@@ -105,6 +107,15 @@ const Satellite = () => {
                         keyboardType="number-pad"
                         placeholderTextColor="#ecf0f1"
                         onChangeText={(text) => setRainfall(text)}
+                    />
+                </View>
+                <View style={styles.inputView}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="Humidity"
+                        keyboardType="number-pad"
+                        placeholderTextColor="#ecf0f1"
+                        onChangeText={(text) => setHumidity(text)}
                     />
                 </View>
                 <TouchableOpacity
