@@ -33,10 +33,10 @@ const Satellite = () => {
                     nitrogen:nitrogen,
                     phosporous:phosporous,
                     potassium:potassium,
-                    pH:pH,
                     temparature:temparature,
-                    rainfall:rainfall,
-                    humidity:humidity
+                    humidity:humidity,
+                    pH:pH,
+                    rainfall:rainfall
                 }),
             });
             let responseJson = await response.status;
