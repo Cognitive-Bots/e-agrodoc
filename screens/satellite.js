@@ -9,6 +9,7 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
     Alert,
+    ScrollView,
 } from "react-native";
 import config from "../utils/config";
 
@@ -83,99 +84,102 @@ const Satellite = () => {
             Keyboard.dismiss();
             console.log("Keyboard dismissed");
         }} >
-            <View style={styles.container}>
-                <StatusBar style="inverted" />
-                <Text style={styles.logo}>Crop-Recommendations</Text>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="Nitrogen"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setNitrogen(text)}
-                    />
+            <ScrollView>
+                <View style={styles.container}>
+                    <StatusBar style="inverted" />
+                    <Text style={styles.logo}>Crop-Recommendations</Text>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="Nitrogen"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setNitrogen(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="Phosporous"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setPhosporous(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="Potassium"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setPotassium(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="pH"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setpH(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="temparature"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setTemparature(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="Rainfall"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setRainfall(text)}
+                        />
+                    </View>
+                    <View style={styles.inputView}>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder="Humidity"
+                            keyboardType="number-pad"
+                            placeholderTextColor="#ecf0f1"
+                            onChangeText={(text) => setHumidity(text)}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        style={styles.signupBtn}
+                        onPress={() => handleSignup()}
+                    >
+                        <Text style={styles.loginText}>Submit</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="Phosporous"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setPhosporous(text)}
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="Potassium"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setPotassium(text)}
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="pH"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setpH(text)}
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="temparature"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setTemparature(text)}
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="Rainfall"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setRainfall(text)}
-                    />
-                </View>
-                <View style={styles.inputView}>
-                    <TextInput
-                        style={styles.inputText}
-                        placeholder="Humidity"
-                        keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
-                        onChangeText={(text) => setHumidity(text)}
-                    />
-                </View>
-                <TouchableOpacity
-                    style={styles.signupBtn}
-                    onPress={() => handleSignup()}
-                >
-                    <Text style={styles.loginText}>Submit</Text>
-                </TouchableOpacity>
-            </View>
+            </ScrollView>
         </TouchableWithoutFeedback>
+
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "white",
         alignItems: "center",
         justifyContent: "center",
     },
     logo: {
         fontWeight: "600",
-        fontSize: 45,
+        fontSize: 30,
         color: "#15f4ee",
         marginBottom: 40,
     },
     inputView: {
         width: "80%",
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "white",
         borderRadius: 12,
         borderWidth: 1,
         borderColor: "#15f4ee",
@@ -186,10 +190,10 @@ const styles = StyleSheet.create({
     },
     inputText: {
         height: 50,
-        color: "white",
+        color: "black",
     },
     forgot: {
-        color: "white",
+        color: "black",
         fontSize: 16,
     },
     signupBtn: {
