@@ -14,7 +14,7 @@ import {
 import config from "../utils/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Satellite = () => {
+const Crop = () => {
     const [nitrogen, setNitrogen] = useState("");
     const [phosporous, setPhosporous] = useState("");
     const [potassium, setPotassium] = useState("");
@@ -194,4 +194,4 @@ const styles = StyleSheet.create({
     // },
 });
 
-export default Satellite;
+export default Crop;

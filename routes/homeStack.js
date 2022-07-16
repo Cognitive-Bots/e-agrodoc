@@ -3,8 +3,8 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from '../screens/homescreen';
-import MobileCaptured from '../screens/disease_detection';
-import GPS from '../screens/crop_recommendation';
+import DiseaseDetection from '../screens/disease_detection';
+import CropRecommendation from '../screens/crop_recommendation';
 
 const HomeStack = () => {
     const Stack = createStackNavigator();
@@ -13,8 +13,8 @@ const HomeStack = () => {
             screenOptions={{headerShown:false}}
             >
                 <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="disease_detection" component={MobileCaptured} />
-                <Stack.Screen name="crop_recommendation" component={GPS} />
+                <Stack.Screen name="disease_detection" component={DiseaseDetection} />
+                <Stack.Screen name="crop_recommendation" component={CropRecommendation} />
             </Stack.Navigator>
     )
 }

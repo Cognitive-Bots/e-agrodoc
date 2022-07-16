@@ -2,7 +2,7 @@
 // import { Button, Image, View, Platform, ScrollView } from 'react-native';
 // import * as ImagePicker from 'expo-image-picker';
 // import config from '../utils/config';
-// const MobileCaptured = ({ route }) => {
+// const DiseaseDetection = ({ route }) => {
 //   const [image, setImage] = useState(null);
 
 //   useEffect(() => {
@@ -107,7 +107,7 @@
 //   );
 // }
 
-// export default MobileCaptured;
+// export default DiseaseDetection;
 
 import React, { Component } from "react";
 import { Button, SafeAreaView, StyleSheet, Alert, Text } from "react-native";
