@@ -51,7 +51,6 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
                 setSignedIn(true);
                 if (responseJson) {
                     AsyncStorage.setItem("user_id", userName);
-                    // navigation.navigate("DrawerNavigator");
                     
                 } else {
                     console.log("Please check your username id or password");
@@ -98,9 +97,6 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
                 {errortext != "" ? (
                     <Text style={styles.errorTextStyle}>{errortext}</Text>
                 ) : null}
-                {/* <TouchableOpacity>
-                <Text style={styles.forgot}>Forgot Password?</Text>
-            </TouchableOpacity> */}
                 <TouchableOpacity
                     style={styles.loginBtn}
                     onPress={() => handleLogin()}
@@ -153,7 +149,6 @@ const styles = StyleSheet.create({
     loginBtn: {
         width: "80%",
         backgroundColor: "#009E60",
-        // #48dbfb
         borderRadius: 25,
         height: 50,
         alignItems: "center",
@@ -176,7 +171,6 @@ const styles = StyleSheet.create({
     loginText: {
         color: "#FFF",
         fontSize: 20,
-        // fontWeight: "600",
     },
     signuptext: {
         color: "#FFFFFF",

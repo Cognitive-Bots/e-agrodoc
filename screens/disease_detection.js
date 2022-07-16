@@ -1,114 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { Button, Image, View, Platform, ScrollView } from 'react-native';
-// import * as ImagePicker from 'expo-image-picker';
-// import config from '../utils/config';
-// const DiseaseDetection = ({ route }) => {
-//   const [image, setImage] = useState(null);
-
-//   useEffect(() => {
-//     (async () => {
-//       if (Platform.OS !== 'web') {
-//         const { status } =
-//           await ImagePicker.requestMediaLibraryPermissionsAsync();
-//         if (status !== 'granted') {
-//           alert('camera roll permissions needed');
-//         }
-//       }
-//     })();
-//   }, []);
-
-//   const pickImage = async () => {
-//     let result = await ImagePicker.launchImageLibraryAsync({
-//       mediaTypes: ImagePicker.MediaTypeOptions.All,
-//       allowsEditing: true,
-//       // aspect: [4, 3],
-//       quality: 1,
-//     });
-
-//     console.log(result);
-
-//     if (!result.cancelled) {
-//       setImage(result.uri);
-//     }
-//   };
-
-//   const uploadToServer = async () => {
-//     console.log("in upload server")
-//     console.log(image);
-
-//     var res = image;
-//     let localUri = res
-//     var fileType = localUri.split(".").pop();
-//     console.log(fileType);
-//     var typeFile;
-//     if (fileType == "dcm") {
-//       typeFile = "application/dicom";
-//     } else if (fileType == "png") {
-//       typeFile = "image/png";
-//     } else if (fileType == "jpg") {
-//       typeFile = "image/jpg";
-//     } else {
-//       typeFile = "image/jpeg";
-//     }
-
-//     var data = new FormData();
-//     data.append("file", image);
-//     // {
-//     //   uri: localUri,
-//     //   type: typeFile,
-//     // });
-//     console.log(data);
-//     try {
-//       let response = await fetch(config.upload_ip + "/api/test", {
-//         method: "POST",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "multipart/form-data",
-//         },
-//         body: data,
-//       });
-//       let responseJson = await response.status;
-//       console.log("File upload status code: ", responseJson);
-//       if (responseJson == 200) {
-//         alert("File Uploaded !!");
-//         setImage(null);
-//       } else {
-//         alert("Server Error or File not uploadable !!");
-//         setImage(null);
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
-
-//   return (
-//     <View style={{ flex: 1, alignItems: 'center', backgroundColor: "black" }}>
-//       {image && (
-//         <ScrollView>
-//           <View style={{ flex: 1, alignItems: 'center', marginTop: 100, justifyContent: 'center' }}>
-//             <ScrollView horizontal={true} alwaysBounceHorizontal={true} alwaysBounceVertical={true} vertical={true}>
-//               <Image
-//                 source={{
-//                   uri: image,
-//                 }}
-//                 style={{ width: 400, height: 400 }}
-//               />
-//             </ScrollView>
-//           </View>
-//         </ScrollView>
-//       )}
-//       <View style={{ flex: 1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
-//         <Button title="Upload" onPress={pickImage} color="coral" />
-//       </View>
-//       <View style={{ flex: 1, alignItems: 'center', margin: 10, justifyContent: 'center' }}>
-//         <Button title="Upload to Server" onPress={uploadToServer} color="coral" />
-//       </View>
-//     </View>
-//   );
-// }
-
-// export default DiseaseDetection;
-
 import React, { Component } from "react";
 import { Button, SafeAreaView, StyleSheet, Alert, Text } from "react-native";
 import config from "../utils/config";
@@ -196,22 +85,16 @@ export default class App extends Component {
 
     console.log(response.headers);
     console.log(response.body);
-    Alert.alert(
-      "Result",
-      response.body,
-    );
+    Alert.alert("Result", response.body);
   };
 
   render() {
     return (
-
       <SafeAreaView style={styles.container}>
         {this.state.cameraRollPer ? (
-          <Button 
-         
+          <Button
             title="Pick From Gallery"
             disabled={this.state.disableButton}
-
             onPress={async () => {
               await this.pickMedia();
               this.setState((s, p) => {
