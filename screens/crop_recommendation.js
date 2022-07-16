@@ -12,7 +12,6 @@ import {
   ScrollView,
 } from "react-native";
 import config from "../utils/config";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Crop = () => {
   const [nitrogen, setNitrogen] = useState("");
@@ -24,35 +23,37 @@ const Crop = () => {
   const [humidity, setHumidity] = useState("");
 
   const handleSignup = async () => {
+
     try {
-      let response = await fetch(config.flask2_ip + "crop_recommendation", {
+      const response = await fetch(config.flask2_ip, {
         method: "POST",
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           nitrogen: nitrogen,
           phosporous: phosporous,
           potassium: potassium,
-          temparature: temparature,
-          humidity: humidity,
           pH: pH,
+          temparature: temparature,
           rainfall: rainfall,
+          humidity: humidity,
         }),
       });
-      let responseJson = await response.status;
-      console.log(responseJson);
-      console.log(response);
+      const output = await response.text();
       Alert.alert(
-        // "Result",
-        // response.body,
-        "ChickPea Recommendation"
+        "Result",
+        output,
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ],
+        { cancelable: false }
       );
     } catch (error) {
       console.error(error);
     }
-  };
-
+  }
   return (
     <TouchableWithoutFeedback
       onPress={() => {
