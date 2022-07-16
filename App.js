@@ -1,20 +1,15 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-// import NavContainer from './routes/drawer';
-import MainStack from './routes/mainStack';
-// import LoginScreen from './screens/loginScreen';
+import React from "react";
+import { StyleSheet } from "react-native";
+import MainStack from "./routes/mainStack";
 
 export default function App() {
-  return (
-    // <NavContainer />
-    // <LoginScreen />
-    <MainStack />
-  );
+  return <MainStack />;
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FF5236',
+    backgroundColor: "#FF5236",
   },
 });
