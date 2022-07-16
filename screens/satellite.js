@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Keyboard,
+    Alert,
 } from "react-native";
 import config from "../utils/config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -41,6 +42,10 @@ const Satellite = () => {
             });
             let responseJson = await response.status;
             console.log(responseJson);
+            Alert.alert(
+                "Result",
+                response.body
+            );
 
         } catch (error) {
             console.error(error);
