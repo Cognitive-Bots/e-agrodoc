@@ -136,27 +136,6 @@ export default class App extends Component {
     });
   }
 
-  // showAlert = () =>
-  //   Alert.alert(
-  //     "Connection Problem",
-  //     "Internet or Server Problem ",
-  //     [
-  //       {
-  //         text: "Try Again",
-  //         onPress: () => {
-  //           this.resetData();
-  //         },
-  //         style: "cancel",
-  //       },
-  //     ],
-  //     {
-  //       cancelable: true,
-  //       onDismiss: () => {
-  //         this.resetData();
-  //       },
-  //     }
-  //   );
-
   uriToBase64 = async (uri) => {
     let base64 = await FS.readAsStringAsync(uri, {
       encoding: FS.EncodingType.Base64,
@@ -225,11 +204,14 @@ export default class App extends Component {
 
   render() {
     return (
+
       <SafeAreaView style={styles.container}>
         {this.state.cameraRollPer ? (
-          <Button
+          <Button 
+         
             title="Pick From Gallery"
             disabled={this.state.disableButton}
+
             onPress={async () => {
               await this.pickMedia();
               this.setState((s, p) => {
@@ -251,8 +233,20 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fdf6e3",
     alignItems: "center",
     justifyContent: "center",
+  },
+  Btn: {
+    width: "80%",
+    backgroundColor: "#009E60",
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: "#009E60",
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 0,
+    marginBottom: 10,
   },
 });

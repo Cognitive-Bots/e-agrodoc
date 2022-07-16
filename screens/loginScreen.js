@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     },
     inputText: {
         height: 80,
-        color: "#009E60",
+        color: "black",
     },
     forgot: {
         color: "black",

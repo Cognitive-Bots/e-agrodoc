@@ -9,12 +9,17 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({ setSignedIn }) => {
     return (
-
-        <Drawer.Navigator >
+        <Drawer.Navigator>
             <Drawer.Screen name="HomeStack" component={HomeStack}
                 options={{
-                    title: 'Home'
+                    title: 'E-AgroDoc',
+                    // color: "#009E60",
+                    headerStyle: {
+                        backgroundColor: "#fdf6e3",
+                        borderBottomWidth: 0,
+                    }
                 }}
+
             />
             <Drawer.Screen name="About">
                 {props => <AboutScreen {...props} setSignedIn={setSignedIn} />}

@@ -69,7 +69,7 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="Nitrogen"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setNitrogen(text)}
                         />
                     </View>
@@ -78,7 +78,7 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="Phosporous"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setPhosporous(text)}
                         />
                     </View>
@@ -87,7 +87,7 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="Potassium"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setPotassium(text)}
                         />
                     </View>
@@ -96,16 +96,16 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="pH"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setpH(text)}
                         />
                     </View>
                     <View style={styles.inputView}>
                         <TextInput
                             style={styles.inputText}
-                            placeholder="temparature"
+                            placeholder="Temparature"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setTemparature(text)}
                         />
                     </View>
@@ -114,7 +114,7 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="Rainfall"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setRainfall(text)}
                         />
                     </View>
@@ -123,7 +123,7 @@ const Satellite = () => {
                             style={styles.inputText}
                             placeholder="Humidity"
                             keyboardType="number-pad"
-                            placeholderTextColor="#ecf0f1"
+                            placeholderTextColor="black"
                             onChangeText={(text) => setHumidity(text)}
                         />
                     </View>
@@ -143,7 +143,7 @@ const Satellite = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#fdf6e3",
         alignItems: "center",
         justifyContent: "center",
     },

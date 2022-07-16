@@ -82,7 +82,7 @@ const RegisterScreen = ({ setSignedIn }) => {
                     <TextInput
                         style={styles.inputText}
                         placeholder="Username"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserName(text)}
                     />
                 </View>
@@ -91,7 +91,7 @@ const RegisterScreen = ({ setSignedIn }) => {
                         style={styles.inputText}
                         placeholder="Email"
                         keyboardType="email-address"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserEmail(text)}
                     />
                 </View>
@@ -100,7 +100,7 @@ const RegisterScreen = ({ setSignedIn }) => {
                         style={styles.inputText}
                         placeholder="Age"
                         keyboardType="number-pad"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserAge(text)}
                     />
                 </View>
@@ -109,7 +109,7 @@ const RegisterScreen = ({ setSignedIn }) => {
                         secureTextEntry
                         style={styles.inputText}
                         placeholder="Password"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserPassword(text)}
                     />
                 </View>
@@ -130,7 +130,7 @@ const RegisterScreen = ({ setSignedIn }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "#fdf6e3",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     },
     inputView: {
         width: "80%",
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "#fdf6e3",
         borderRadius: 12,
         borderWidth: 1,
         borderColor: "#009E60",
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     },
     inputText: {
         height: 50,
-        color: "white",
+        color: "black",
     },
     forgot: {
         color: "white",
@@ -162,17 +162,18 @@ const styles = StyleSheet.create({
     signupBtn: {
         width: "80%",
         backgroundColor: "#009E60",
-        // #48dbfb
         borderRadius: 25,
+        borderWidth: 1,
+        borderColor: "#009E60",
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
+        marginTop: 0,
         marginBottom: 10,
     },
     loginText: {
-        color: "#000000",
-        fontSize: 22,
+        color: "white",
+        fontSize: 20,
     },
     errorTextStyle: {
         color: "red",
