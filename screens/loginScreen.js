@@ -77,12 +77,12 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
         }} >
             <View style={styles.container}>
                 <StatusBar style="inverted" />
-                <Text style={styles.logo}>Aqua-Questers</Text>
+                <Text style={styles.logo}>E-AgroDoc</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Username"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserName(text)}
                     />
                 </View>
@@ -91,7 +91,7 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
                         secureTextEntry
                         style={styles.inputText}
                         placeholder="Password"
-                        placeholderTextColor="#ecf0f1"
+                        placeholderTextColor="black"
                         onChangeText={(text) => setUserPassword(text)}
                     />
                 </View>
@@ -105,7 +105,7 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
                     style={styles.loginBtn}
                     onPress={() => handleLogin()}
                 >
-                    <Text style={styles.loginText}>LOGIN</Text>
+                    <Text style={styles.loginText}>Login</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.signupBtn}
@@ -121,22 +121,22 @@ const LoginScreen = ( {navigation, setSignedIn} ) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "#fdf6e3",
         alignItems: "center",
         justifyContent: "center",
     },
     logo: {
         fontWeight: "600",
         fontSize: 45,
-        color: "#15f4ee",
+        color: "#009E60",
         marginBottom: 40,
     },
     inputView: {
         width: "80%",
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "#fdf6e3",
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: "#15f4ee",
+        borderColor: "#009E60",
         height: 50,
         marginBottom: 20,
         justifyContent: "center",
@@ -144,15 +144,15 @@ const styles = StyleSheet.create({
     },
     inputText: {
         height: 80,
-        color: "white",
+        color: "#009E60",
     },
     forgot: {
-        color: "white",
+        color: "black",
         fontSize: 16,
     },
     loginBtn: {
         width: "80%",
-        backgroundColor: "#15f4ee",
+        backgroundColor: "#009E60",
         // #48dbfb
         borderRadius: 25,
         height: 50,
@@ -163,10 +163,10 @@ const styles = StyleSheet.create({
     },
     signupBtn: {
         width: "80%",
-        backgroundColor: "#0e0e0e",
+        backgroundColor: "#009E60",
         borderRadius: 25,
         borderWidth: 1,
-        borderColor: "#15f4ee",
+        borderColor: "#009E60",
         height: 50,
         alignItems: "center",
         justifyContent: "center",
@@ -174,9 +174,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     loginText: {
-        color: "#000000",
-        fontSize: 22,
-        fontWeight: "600",
+        color: "#FFF",
+        fontSize: 20,
+        // fontWeight: "600",
     },
     signuptext: {
         color: "#FFFFFF",

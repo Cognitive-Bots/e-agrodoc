@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
             }} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}
+        {/* <TouchableOpacity style={styles.button}
           // onPress={() => { alert("Disease") }}>
           onPress={() => {
             navigation.navigate('HomeStack', {
@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
               borderColor: "black",
               borderWidth: 2,
             }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </ScrollView>
     </View>
   )
@@ -68,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },

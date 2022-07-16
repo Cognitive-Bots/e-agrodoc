@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     logo: {
         fontWeight: "600",
         fontSize: 30,
-        color: "#15f4ee",
+        color: "#009E60",
         marginBottom: 40,
     },
     inputView: {
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: "#15f4ee",
+        borderColor: "#009E60",
         height: 50,
         marginBottom: 20,
         justifyContent: "center",
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     },
     signupBtn: {
         width: "80%",
-        backgroundColor: "#15f4ee",
+        backgroundColor: "#009E60",
         // #48dbfb
         borderRadius: 25,
         height: 50,

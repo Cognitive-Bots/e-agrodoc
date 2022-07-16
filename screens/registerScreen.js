@@ -77,7 +77,7 @@ const RegisterScreen = ({ setSignedIn }) => {
         }} >
             <View style={styles.container}>
                 <StatusBar style="inverted" />
-                <Text style={styles.logo}>Aqua-Questers</Text>
+                <Text style={styles.logo}>E-AgroDoc</Text>
                 <View style={styles.inputView}>
                     <TextInput
                         style={styles.inputText}
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     logo: {
         fontWeight: "600",
         fontSize: 45,
-        color: "#15f4ee",
+        color: "#009E60",
         marginBottom: 40,
     },
     inputView: {
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0e0e0e",
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: "#15f4ee",
+        borderColor: "#009E60",
         height: 50,
         marginBottom: 20,
         justifyContent: "center",
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     },
     signupBtn: {
         width: "80%",
-        backgroundColor: "#15f4ee",
+        backgroundColor: "#009E60",
         // #48dbfb
         borderRadius: 25,
         height: 50,
