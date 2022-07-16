@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import disease_detection from "../assets/detection.jpg";
-import satellite from "../assets/recommendation.jpg";
+import crop_recommendation from "../assets/recommendation.jpg";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -30,11 +30,11 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.button}
             onPress={() => {
               navigation.navigate('HomeStack', {
-                screen: 'satellite',
+                screen: 'crop_recommendation',
                 inital: false
               })
             }}>
-            <Image source={satellite}
+            <Image source={crop_recommendation}
               style={{
                 height: 300,
                 width: 350,
@@ -71,7 +71,7 @@ export default HomeScreen;
 //     <View style={styles.container}>
 //       <TouchableOpacity style={styles.button}
 //         onPress={() => { alert("Crop") }}>
-//         <Image source={satellite}
+//         <Image source={crop_recommendation}
 //           style={{
 //             height: 220,
 //             width: 350,
