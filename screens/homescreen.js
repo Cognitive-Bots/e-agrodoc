@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
-import mobile from "../assets/detection.jpg";
+import disease_detection from "../assets/detection.jpg";
 import satellite from "../assets/recommendation.jpg";
 
 const HomeScreen = ({ navigation }) => {
@@ -14,11 +14,11 @@ const HomeScreen = ({ navigation }) => {
               navigation.navigate.openDrawer;
               console.log(navigation);
               navigation.navigate("HomeStack", {
-                screen: "mobile",
+                screen: "disease_detection",
                 inital: false
               })
             }}>
-            <Image source={mobile}
+            <Image source={disease_detection}
               style={{
                 height: 300,
                 width: 350,
@@ -81,7 +81,7 @@ export default HomeScreen;
 //       </TouchableOpacity>
 //       <TouchableOpacity style={styles.button}
 //         onPress={() => { alert("Fertilizer") }}>
-//         <Image source={mobile}
+//         <Image source={disease_detection}
 //           style={{
 //             height: 220,
 //             width: 350,
