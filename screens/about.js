@@ -12,7 +12,7 @@ const AboutScreen = ({ setSignedIn }) => {
         backgroundColor: "#fdf6e3",
       }}
     >
-      <Text style={{ fontSize: 40, fontStyle: "bold" }}>Inspiration</Text>
+      <Text style={{ fontSize: 40 }}>Inspiration</Text>
       <Text style={{ fontSize: 15 }}>
         The “E-AgroDoc” mobile application is an interactive tool for farmers to
         find diseases,take crop recommendations and fertilizer recommendations.
@@ -30,15 +30,15 @@ const AboutScreen = ({ setSignedIn }) => {
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <Text style={{ fontSize: 40, fontStyle: "bold" }}>Team</Text>
-      <Text style={{ fontSize: 20, fontStyle: "bold" }}>
+      <Text style={{ fontSize: 40 }}>Team</Text>
+      <Text style={{ fontSize: 20 }}>
         Sujith Sai Nimmala
       </Text>
-      <Text style={{ fontSize: 20, fontStyle: "bold" }}>
+      <Text style={{ fontSize: 20 }}>
         Saish Reddy Kommalla
       </Text>
-      <Text style={{ fontSize: 20, fontStyle: "bold" }}>R Sai Karthik</Text>
-      <Text style={{ fontSize: 20, fontStyle: "bold" }}>D V N Shashank</Text>
+      <Text style={{ fontSize: 20 }}>R Sai Karthik</Text>
+      <Text style={{ fontSize: 20 }}>D V N Shashank</Text>
     </View>
   );
 };
