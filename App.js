@@ -1,18 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/homescreen';
+import React from "react";
+import { StyleSheet } from "react-native";
+import MainStack from "./routes/mainStack";
+
 export default function App() {
-  return (
-    <HomeScreen />
-  );
+  return <MainStack />;
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#FF5236",
   },
 });
