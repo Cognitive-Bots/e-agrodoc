@@ -42,6 +42,7 @@ export default class App extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       base64: true,
+      allowsEditing: true,
     });
     if (result.cancelled) {
       return;
