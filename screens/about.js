@@ -35,10 +35,9 @@ const AboutScreen = ({ setSignedIn }) => {
         Sujith Sai Nimmala
       </Text>
       <Text style={{ fontSize: 20 }}>
-        Saish Reddy Kommalla
+        Saish Reddy Komalla
       </Text>
       <Text style={{ fontSize: 20 }}>R Sai Karthik</Text>
-      <Text style={{ fontSize: 20 }}>D V N Shashank</Text>
     </View>
   );
 };
