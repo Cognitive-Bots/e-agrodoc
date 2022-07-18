@@ -4,6 +4,7 @@ import * as React from "react";
 import AboutScreen from "../screens/about";
 import HomeStack from "./homeStack";
 import Account from "../screens/account";
+import HeaderTitle from "../screens/header_title";
 
 const Drawer = createDrawerNavigator();
 
@@ -14,12 +15,12 @@ const DrawerNavigator = ({ setSignedIn }) => {
         name="HomeStack"
         component={HomeStack}
         options={{
-          title: "E-AgroDoc",
-          // color: "#009E60",
+          color: "#009E60",
           headerStyle: {
             backgroundColor: "#fdf6e3",
             borderBottomWidth: 0,
           },
+          headerTitle: () => <HeaderTitle />,
         }}
       />
       <Drawer.Screen name="About">
